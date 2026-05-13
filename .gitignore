@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+tmp/
+demo-safe-output/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+.vite/
+.playwright/
