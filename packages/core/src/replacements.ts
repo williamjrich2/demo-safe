@@ -1,4 +1,5 @@
 import type { Finding, ReplacementMap } from './types.js'
+import { getFindingMatch } from './detectors.js'
 
 const DEFAULT_VALUES = [
   'Acme Studio',
@@ -16,14 +17,15 @@ export function createReplacementMap(findings: Finding[]): ReplacementMap {
 
   for (const finding of findings) {
     if (finding.detectorId === 'blocked-secret-file') continue
-    if (map[finding.match]) continue
+    const rawMatch = getFindingMatch(finding)
+    if (map[rawMatch]) continue
 
-    if (finding.detectorId === 'email') map[finding.match] = 'hello@example.com'
-    else if (finding.detectorId === 'phone') map[finding.match] = '(555) 010-1234'
-    else if (finding.detectorId === 'url') map[finding.match] = 'https://example.com'
-    else if (finding.detectorId.includes('secret')) map[finding.match] = 'demo-safe-redacted'
-    else if (finding.detectorId === 'env-reference') map[finding.match] = 'DEMO_SAFE_PLACEHOLDER'
-    else map[finding.match] = DEFAULT_VALUES[genericIndex++ % DEFAULT_VALUES.length]
+    if (finding.detectorId === 'email') map[rawMatch] = 'hello@example.com'
+    else if (finding.detectorId === 'phone') map[rawMatch] = '(555) 010-1234'
+    else if (finding.detectorId === 'url') map[rawMatch] = 'https://example.com'
+    else if (finding.detectorId.includes('secret')) map[rawMatch] = 'demo-safe-redacted'
+    else if (finding.detectorId === 'env-reference') map[rawMatch] = 'DEMO_SAFE_PLACEHOLDER'
+    else map[rawMatch] = DEFAULT_VALUES[genericIndex++ % DEFAULT_VALUES.length]
   }
 
   return map

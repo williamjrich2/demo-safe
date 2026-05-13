@@ -1,5 +1,16 @@
 import type { Detector, Finding } from './types.js'
 
+const INTERNAL_MATCHES = new WeakMap<Finding, string>
+
+export function getFindingMatch(finding: Finding): string {
+  return INTERNAL_MATCHES.get(finding) ?? finding.preview
+}
+
+function createFinding(finding: Finding, rawMatch: string): Finding {
+  INTERNAL_MATCHES.set(finding, rawMatch)
+  return finding
+}
+
 export const DEFAULT_DETECTORS: Detector[] = [
   {
     id: 'email',
@@ -43,16 +54,16 @@ export function detectSensitiveContent(content: string, filePath = '<memory>', d
       if (match.index === undefined) continue
       const location = offsetToLocation(lineStarts, match.index)
       const matched = match[0]
-      findings.push({
+      findings.push(createFinding({
         detectorId: detector.id,
         severity: detector.severity,
         filePath,
         line: location.line,
         column: location.column,
-        match: matched,
+        match: redactPreview(matched),
         preview: redactPreview(matched),
         replacement: detector.replacement,
-      })
+      }, matched))
     }
   }
 
