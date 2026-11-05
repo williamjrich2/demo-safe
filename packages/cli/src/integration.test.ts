@@ -8,7 +8,7 @@ describe('runAgent', () => {
   it('creates report, demo, embed, and preview output', async () => {
     const source = await mkdtemp(path.join(tmpdir(), 'demo-safe-source-'))
     const out = await mkdtemp(path.join(tmpdir(), 'demo-safe-output-'))
-    await writeFile(path.join(source, 'index.html'), '<h1>ClientCo</h1><p>Email jane@client.com or call (404) 555-0199</p>')
+    await writeFile(path.join(source, 'index.html'), '<h1>Private Company</h1><p>Email jane@client.com or call (404) 555-0199</p>')
 
     await runAgent(source, out, '/landing-page')
 
@@ -20,9 +20,11 @@ describe('runAgent', () => {
 
     expect(JSON.parse(report).findings.length).toBeGreaterThan(0)
     expect(demo).toContain('Safe public demo artifact')
+    expect(demo).toContain('safe public demo for Example Company')
     expect(demo).not.toContain('jane@client.com')
     expect(network).toContain('window.fetch')
     expect(iframe).toContain('<iframe')
     expect(preview).toContain('<svg')
+    expect(preview).toContain('safe public demo for Example Company')
   })
 })

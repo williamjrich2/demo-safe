@@ -2,8 +2,8 @@ import type { Finding, ReplacementMap } from './types.js'
 import { getFindingMatch } from './detectors.js'
 
 const DEFAULT_VALUES = [
-  'Acme Studio',
-  'Northstar Services',
+  'Example Company',
+  'Example Services',
   'Jordan Lee',
   'Taylor Morgan',
   'hello@example.com',

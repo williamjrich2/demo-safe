@@ -20,7 +20,7 @@ describe('detectSensitiveContent', () => {
   })
 
   it('detects environment variable references', () => {
-    const findings = detectSensitiveContent('const key = process.env.SUPABASE_SERVICE_ROLE_KEY', 'demo.ts')
+    const findings = detectSensitiveContent('const key = process.env.APP_SERVICE_ROLE_KEY', 'demo.ts')
     expect(findings.some((finding) => finding.detectorId === 'env-reference')).toBe(true)
   })
 

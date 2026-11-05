@@ -3,13 +3,13 @@ import { createNetworkStub, sanitizeText } from './sanitize.js'
 
 describe('sanitizeText', () => {
   it('replaces all configured originals', () => {
-    const result = sanitizeText('Jane works at ClientCo. Email Jane at jane@client.com.', {
+    const result = sanitizeText('Jane works at Private Company. Email Jane at jane@client.com.', {
       Jane: 'Jordan',
-      ClientCo: 'Acme Studio',
+      'Private Company': 'Example Company',
       'jane@client.com': 'hello@example.com',
     })
 
-    expect(result).toBe('Jordan works at Acme Studio. Email Jordan at hello@example.com.')
+    expect(result).toBe('Jordan works at Example Company. Email Jordan at hello@example.com.')
   })
 })
 

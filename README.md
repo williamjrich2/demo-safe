@@ -66,7 +66,7 @@ Supported best today:
 Not yet supported:
 
 - perfect extraction from all frameworks
-- Figma import/export
+- Design-tool import/export
 - AI image generation
 - automatic deployment
 - guaranteed PII detection across every file type

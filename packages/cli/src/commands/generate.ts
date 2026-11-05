@@ -26,7 +26,7 @@ export async function runGenerate(source: string, out = 'demo-safe-output', opti
   await fs.writeFile(path.join(reportDir, 'replacements.json'), `${JSON.stringify(redactReplacementKeys(replacements), null, 2)}\n`, 'utf8')
   await fs.writeFile(path.join(reportDir, 'blocked-network-calls.json'), `${JSON.stringify({ blocked: ['fetch', 'XMLHttpRequest', 'WebSocket', 'EventSource', 'sendBeacon'] }, null, 2)}\n`, 'utf8')
 
-  const showcaseText = sanitizeText('Private client work transformed into a safe public demo for ClientCo. Contact jane@client.com.', replacements)
+  const showcaseText = sanitizeText('Private client work transformed into a safe public demo for Example Company. Contact jane@client.com.', replacements)
   await fs.writeFile(path.join(demoDir, 'package.json'), JSON.stringify({ type: 'module', scripts: { dev: 'vite --host 127.0.0.1' }, dependencies: { '@vitejs/plugin-react': 'latest', vite: 'latest', typescript: 'latest', react: 'latest', 'react-dom': 'latest' }, devDependencies: {} }, null, 2), 'utf8')
   await fs.writeFile(path.join(demoDir, 'index.html'), '<div id="root"></div><script type="module" src="/src/main.jsx"></script>\n', 'utf8')
   await fs.writeFile(path.join(demoDir, 'src/network-stubs.js'), createNetworkStub(), 'utf8')

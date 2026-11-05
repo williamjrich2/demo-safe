@@ -21,7 +21,7 @@ The primary user is an AI coding agent operating on behalf of a developer. The C
 
 1. Perfect extraction from every frontend framework.
 2. AI image generation.
-3. Figma import/export.
+3. Design-tool import/export.
 4. Production-grade PII detection across all languages.
 5. Automatic deployment.
 6. Multi-page journeys beyond a small manifest-driven sequence.
@@ -143,7 +143,7 @@ Every detection should include:
 
 The replacement system should generate deterministic demo values:
 
-- Company: `Acme Studio`, `Northstar Services`, `Atlas Works`.
+- Company: `Example Company`, `Example Services`, `Example Studio`.
 - Person: `Jordan Lee`, `Taylor Morgan`, `Casey Rivera`.
 - Email: `hello@example.com`, `jordan@example.com`.
 - Phone: `(555) 010-1234`.
@@ -211,7 +211,7 @@ export default {
     allowlist: []
   },
   demoData: {
-    company: 'Acme Studio',
+    company: 'Example Company',
     industry: 'Professional Services',
     tone: 'modern-saas'
   },
@@ -293,4 +293,4 @@ MVP alpha is acceptable when:
 4. `demo-safe agent run examples/vite-landing-page --out tmp/demo-output` creates demo, report, and embed folders.
 5. Generated output contains no obvious real secrets or private data.
 6. README explains agent-first workflow, CLI commands, limitations, and safety model.
-7. The repo has MIT license and no private Mohawk/AnovaGrowth client assets.
+7. The repo has an MIT license and no real client names, branding, or private client assets.
